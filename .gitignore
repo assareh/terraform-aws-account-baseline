@@ -1,0 +1,14 @@
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+# *.tfvars
+
+# VIM: Swap-files. Note, this also causes git to ignore .swf files that
+# start with .  or _, so take care if you create such things.
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
