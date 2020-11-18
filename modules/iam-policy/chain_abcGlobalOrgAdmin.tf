@@ -8,7 +8,6 @@ data "aws_iam_policy_document" "orgadm_assume_role_policy" {
       type = "AWS"
 
       identifiers = [
-        "arn:aws:iam::<org-master-aws-account-number>:root",
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
       ]
     }

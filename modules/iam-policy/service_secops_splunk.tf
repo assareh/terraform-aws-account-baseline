@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "secops_monitoring_assume_role_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = [var.secops_monitoring_aws_account_arn]
+      identifiers = ["*"]
     }
   }
 }

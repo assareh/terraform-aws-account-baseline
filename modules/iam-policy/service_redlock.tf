@@ -7,13 +7,13 @@ data "aws_iam_policy_document" "redlock_assume_role_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = [var.redlock_aws_account_arn]
+      identifiers = ["*"]
     }
 
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
-      values   = [var.redlock_id]
+      values   = ["*"]
     }
 
     effect = "Allow"

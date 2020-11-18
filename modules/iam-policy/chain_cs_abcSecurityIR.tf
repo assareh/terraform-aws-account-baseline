@@ -8,7 +8,6 @@ data "aws_iam_policy_document" "abcSecurityIR_assume_role_policy" {
       type = "AWS"
 
       identifiers = [
-        "arn:aws:iam::111111111111:role/abcSecurityIR",
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
       ]
     }

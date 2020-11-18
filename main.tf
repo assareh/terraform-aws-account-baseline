@@ -27,40 +27,40 @@ locals {
 data "aws_caller_identity" "current" {}
 
 # Set account alias with name and account ID
-resource "aws_iam_account_alias" "alias" {
-  account_alias = "${var.account_name}-${data.aws_caller_identity.current.account_id}"
-}
+# resource "aws_iam_account_alias" "alias" {
+#   account_alias = "${var.account_name}-${data.aws_caller_identity.current.account_id}"
+# }
 
 # Create the local Terraform user
-resource "aws_iam_user" "terraform" {
-  name          = "terraform"
-  force_destroy = true
-}
+# resource "aws_iam_user" "terraform" {
+#   name          = "terraform"
+#   force_destroy = true
+# }
 
-resource "aws_iam_user_policy_attachment" "terraform_user_policy" {
-  user       = aws_iam_user.terraform.name
-  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
+# resource "aws_iam_user_policy_attachment" "terraform_user_policy" {
+#   user       = aws_iam_user.terraform.name
+#   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+# }
 
 # Okta provider - App Production
-resource "aws_iam_saml_provider" "okta_prd" {
-  name                   = "OKTA_PRD"
-  count                  = var.int_environment == "prd" ? 1 : 0
-  saml_metadata_document = file("${path.module}/files/okta-prd.xml")
-}
+# resource "aws_iam_saml_provider" "okta_prd" {
+#   name                   = "OKTA_PRD"
+#   count                  = var.int_environment == "prd" ? 1 : 0
+#   saml_metadata_document = file("${path.module}/files/okta-prd.xml")
+# }
 
 # Okta provider - App Non-Production
-resource "aws_iam_saml_provider" "okta_npd" {
-  name                   = "OKTA_NPD"
-  count                  = var.int_environment == "npd" ? 1 : 0
-  saml_metadata_document = file("${path.module}/files/okta-npd.xml")
-}
+# resource "aws_iam_saml_provider" "okta_npd" {
+#   name                   = "OKTA_NPD"
+#   count                  = var.int_environment == "npd" ? 1 : 0
+#   saml_metadata_document = file("${path.module}/files/okta-npd.xml")
+# }
 
 # Roles and policies
 module "iam-policy" {
   source = "./modules/iam-policy"
-  #okta_provider_arn = "${aws_iam_saml_provider.okta_sso.arn}"
-  okta_provider_arn = "${element(concat(aws_iam_saml_provider.okta_prd.*.arn, aws_iam_saml_provider.okta_npd.*.arn, list("")), 0)}"
+  # okta_provider_arn = "${aws_iam_saml_provider.okta_sso.arn}"
+  # okta_provider_arn = "${element(concat(aws_iam_saml_provider.okta_prd.*.arn, aws_iam_saml_provider.okta_npd.*.arn, list("")), 0)}"
 }
 
 # AWS Config
@@ -91,13 +91,13 @@ module "iam-policy" {
 # }
 
 # IAM account password policy
-resource "aws_iam_account_password_policy" "priviliged" {
-  minimum_password_length        = 16
-  require_lowercase_characters   = true
-  require_numbers                = true
-  require_uppercase_characters   = true
-  require_symbols                = true
-  allow_users_to_change_password = true
-  max_password_age               = 90
-  password_reuse_prevention      = 24
-}
+# resource "aws_iam_account_password_policy" "priviliged" {
+#   minimum_password_length        = 16
+#   require_lowercase_characters   = true
+#   require_numbers                = true
+#   require_uppercase_characters   = true
+#   require_symbols                = true
+#   allow_users_to_change_password = true
+#   max_password_age               = 90
+#   password_reuse_prevention      = 24
+# }

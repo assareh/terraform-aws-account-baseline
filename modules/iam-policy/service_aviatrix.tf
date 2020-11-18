@@ -68,7 +68,6 @@ data "aws_iam_policy_document" "aviatrix_app_trust_policy" {
       type = "AWS"
 
       identifiers = [
-        "arn:aws:iam::111111111111:root",
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
       ]
     }

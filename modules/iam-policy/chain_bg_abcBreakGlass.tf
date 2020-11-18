@@ -1,5 +1,4 @@
 # abcBreakGlass trust policy
-# abcBreakGlass trust policy
 data "aws_iam_policy_document" "breakglass_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -9,7 +8,6 @@ data "aws_iam_policy_document" "breakglass_assume_role_policy" {
       type = "AWS"
 
       identifiers = [
-        "arn:aws:iam::111111111111:user/BreakglassUser",
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
       ]
     }
