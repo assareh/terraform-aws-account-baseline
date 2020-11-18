@@ -92,6 +92,10 @@ module "iam-policy" {
 #   password_reuse_prevention      = 24
 # }
 
+provider "tfe" {
+  version = "~> 0.15.0"
+}
+  
 # required variables for application workspace
 resource "tfe_variable" "role_arn" {
   key          = "role_arn"
