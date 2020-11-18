@@ -1,6 +1,6 @@
 # Make baseline module version available
 locals {
-  baseline_version = "v1.4.5"
+  baseline_version = "v1.4.6"
 }
 
 # Connect to the core-logging account to get S3 buckets
