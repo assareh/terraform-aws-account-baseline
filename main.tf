@@ -91,3 +91,17 @@ module "iam-policy" {
 #   max_password_age               = 90
 #   password_reuse_prevention      = 24
 # }
+
+# required variables for application workspace
+resource "tfe_variable" "role_arn" {
+  key          = "role_arn"
+  value        = module.iam-policy.developer
+  category     = "terraform"
+  workspace_id = data.tfe_workspace.application.id
+  description  = "The AWS IAM role to assume"
+}
+
+data "tfe_workspace" "application" {
+  name         = "${var.account_name}-resources"
+  organization = var.tfc_org
+}

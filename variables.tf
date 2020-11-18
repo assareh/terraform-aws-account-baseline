@@ -9,3 +9,5 @@ variable "environment" {
 variable "int_environment" {
   description = "Application account type prod vs non-prod"
 }
+
+variable "tfc_org" {}
