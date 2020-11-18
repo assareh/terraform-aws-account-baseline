@@ -1,13 +1,3 @@
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "hashidemos"
-    workspaces {
-      name = "a-lab"
-    }
-  }
-}
-
 # Make baseline module version available
 locals {
   baseline_version = "v1.4.5"
